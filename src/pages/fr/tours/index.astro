@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import TourCard from '../../../components/TourCard.astro';
+import { copy } from '../../../data/site';
+import { tours } from '../../../data/tours';
+
+const lang = 'fr';
+const c = copy[lang];
+---
+
+<BaseLayout title="Tours de plongée à Cabo | Hammerhead Divers" description="Comparez les expériences de plongée, faune marine et cours PADI. Réservez via WeTravel ou demandez sur WhatsApp." lang={lang}>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">{c.sections.toursEyebrow}</div>
+        <h1>Tours océaniques</h1>
+        <p>Prix, durée, niveau, inclusions, saison et réservation directe via WeTravel.</p>
+      </div>
+    </section>
+    <section class="section tour-catalog"><div class="container grid grid-3 tour-card-grid">{tours.map((tour) => <TourCard tour={tour} lang={lang} />)}</div></section>
+  </main>
+</BaseLayout>

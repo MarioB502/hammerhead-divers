@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { contact, copy } from '../../../data/site';
+import { tours } from '../../../data/tours';
+
+export function getStaticPaths() {
+  return tours.map((tour) => ({ params: { slug: tour.slug }, props: { tour } }));
+}
+
+const { tour } = Astro.props;
+const lang = 'fr';
+const c = copy[lang];
+const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${encodeURIComponent(`Bonjour, je souhaite des informations sur ${tour.title.fr}.`)}`;
+---
+
+<BaseLayout title={`${tour.title.fr} | Hammerhead Divers`} description={tour.summary.fr} lang={lang}>
+  <main>
+    <section class="page-hero tour-hero" style={`--tour-hero-image: url('${tour.image}')`}><div class="container"><div class="eyebrow">{tour.location}</div><h1>{tour.title[lang]}</h1><p>{tour.summary[lang]}</p></div></section>
+    <section class="section">
+      <div class="container tour-detail">
+        <div>
+          <div class="detail-block"><h2>Points forts</h2><ul>{tour.highlights[lang].map((item) => <li>{item}</li>)}</ul></div>
+          <div class="detail-block"><h2>Inclus</h2><ul>{tour.included[lang].map((item) => <li>{item}</li>)}</ul></div>
+          <div class="detail-block"><h2>FAQ</h2>{tour.faqs[lang].map((faq) => <div class="card"><h3>{faq.q}</h3><p>{faq.a}</p></div>)}</div>
+        </div>
+        <aside class="booking-box">
+          <strong>{tour.priceFrom}</strong>
+          <div class="meta"><span>{tour.duration}</span><span>{tour.groupSize}</span><span>{tour.level}</span><span>{tour.season}</span></div>
+          <a class="btn btn-primary" href={tour.bookingUrl} target="_blank" rel="noopener">{c.cta.book}</a>
+          <a class="btn btn-whatsapp" href={whatsUrl}>{c.cta.whats}</a>
+        </aside>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

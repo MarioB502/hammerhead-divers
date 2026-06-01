@@ -1,0 +1,33 @@
+---
+import type { Tour } from '../data/tours';
+import { contact, copy, type Lang } from '../data/site';
+
+type Props = { tour: Tour; lang?: Lang };
+const { tour, lang = 'en' } = Astro.props;
+const c = copy[lang];
+const langPrefix = lang === 'en' ? '' : `/${lang}`;
+const whatsText = encodeURIComponent(`Hi, I would like information about ${tour.title.en}.`);
+const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsText}`;
+---
+
+<article class="card tour-card">
+  <a class="tour-image" href={`${langPrefix}/tours/${tour.slug}/`} aria-label={tour.title[lang]}>
+    <img src={tour.image} alt={tour.title[lang]} loading="lazy" />
+    <span>{tour.badge}</span>
+  </a>
+  <div class="tour-card-copy">
+    <span class="pill tour-category">{tour.serviceType[lang]}</span>
+    <h3>{tour.title[lang]}</h3>
+    <p>{tour.summary[lang]}</p>
+  </div>
+  <div class="meta">
+    <span>{tour.priceFrom}</span>
+    <span>{tour.duration}</span>
+    <span>{tour.groupSize}</span>
+    <span>{tour.level}</span>
+  </div>
+  <div class="card-actions">
+    <a class="btn btn-primary" href={`${langPrefix}/tours/${tour.slug}/`}>{c.cta.details}</a>
+    <a class="btn btn-whatsapp" href={whatsUrl} aria-label={`${c.cta.whats}: ${tour.title[lang]}`}>WhatsApp</a>
+  </div>
+</article>

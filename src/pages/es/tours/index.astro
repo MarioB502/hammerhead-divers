@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import TourCard from '../../../components/TourCard.astro';
+import { copy } from '../../../data/site';
+import { tours } from '../../../data/tours';
+
+const lang = 'es';
+const c = copy[lang];
+---
+
+<BaseLayout title="Tours de buceo en Cabo | Hammerhead Divers" description="Compara experiencias de buceo, vida marina y cursos PADI. Reserva por WeTravel o pregunta por WhatsApp." lang={lang}>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">{c.sections.toursEyebrow}</div>
+        <h1>Tours oceánicos</h1>
+        <p>Precio, duración, nivel, inclusiones, temporada y reserva directa por WeTravel.</p>
+      </div>
+    </section>
+    <section class="section tour-catalog"><div class="container grid grid-3 tour-card-grid">{tours.map((tour) => <TourCard tour={tour} lang={lang} />)}</div></section>
+  </main>
+</BaseLayout>

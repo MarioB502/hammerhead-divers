@@ -1,0 +1,179 @@
+---
+import TourCard from './TourCard.astro';
+import { contact, copy, type Lang } from '../data/site';
+import { gallery, tours, wildlife } from '../data/tours';
+
+type Props = { lang?: Lang };
+const { lang = 'en' } = Astro.props;
+const c = copy[lang];
+const langPrefix = lang === 'en' ? '' : `/${lang}`;
+const featuredTours = tours.filter((tour) => tour.featured);
+
+const chooserTitle = {
+  en: 'Find the trip that fits your ocean day',
+  es: 'Encuentra el tour ideal para tu dia en el mar',
+  fr: 'Trouvez le tour ideal pour votre journee en mer'
+};
+
+const wildlifeText = {
+  en: 'Baja changes month by month. Use this calendar to match your travel dates with the encounters guests ask for most: whale sharks, humpbacks, mobulas and hammerheads.',
+  es: 'Baja cambia mes con mes. Usa este calendario para conectar tus fechas de viaje con los encuentros mas buscados: tiburon ballena, ballenas jorobadas, mobulas y tiburones martillo.',
+  fr: 'Baja change mois apres mois. Utilisez ce calendrier pour relier vos dates de voyage aux rencontres les plus demandees: requins-baleines, baleines a bosse, mobulas et requins-marteaux.'
+};
+
+const why = {
+  en: [
+    ['01', 'Max 4 divers per guide', 'Small groups improve safety, attention, marine life interaction and perceived value.'],
+    ['02', 'Safety-first operation', 'PADI trilingual instructors, high-quality gear and condition-based planning.'],
+    ['03', 'Transparent booking', 'Travelers can compare tours, ask on WhatsApp, and complete payment through WeTravel.'],
+    ['04', 'Conservation-driven', 'Women-owned team with eco-friendly practices, ocean education and responsible wildlife encounters.']
+  ],
+  es: [
+    ['01', 'Max. 4 buzos por guia', 'Grupos pequenos mejoran seguridad, atencion, interaccion con vida marina y valor percibido.'],
+    ['02', 'Operacion segura', 'Instructores PADI trilingues, equipo de calidad y planeacion segun condiciones.'],
+    ['03', 'Reserva transparente', 'El viajero compara tours, pregunta por WhatsApp y paga en WeTravel.'],
+    ['04', 'Conservacion real', 'Equipo liderado por mujeres, practicas eco-amigables y encuentros responsables.']
+  ],
+  fr: [
+    ['01', 'Max 4 plongeurs par guide', 'Les petits groupes ameliorent securite, attention et interaction avec la faune marine.'],
+    ['02', 'Securite avant tout', 'Instructeurs PADI trilingues, equipement de qualite et planification selon les conditions.'],
+    ['03', 'Reservation claire', 'Les voyageurs comparent les tours, demandent sur WhatsApp et paient via WeTravel.'],
+    ['04', 'Engages pour l ocean', 'Equipe dirigee par des femmes, pratiques responsables et education marine.']
+  ]
+};
+
+const whyIntro = {
+  en: 'A premium dive operator should make the decision feel clear before the guest ever reaches checkout.',
+  es: 'Un operador premium debe hacer que la decision sea clara antes de que el viajero llegue al checkout.',
+  fr: 'Un operateur premium doit rendre la decision claire avant meme que le voyageur arrive au paiement.'
+};
+---
+
+<main>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">{c.hero.eyebrow}</div>
+        <h1>{c.hero.title}</h1>
+        <p>{c.hero.text}</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href={`${langPrefix}/tours/`}>{c.hero.primary}</a>
+          <a class="btn btn-whatsapp" href={`https://wa.me/${contact.phoneRaw}`}>{c.hero.secondary}</a>
+        </div>
+        <div class="trust-row">
+          {c.trust.map((item) => <span class="pill">{item}</span>)}
+        </div>
+      </div>
+      <aside class="hero-booking-card">
+        <span>Most requested this season</span>
+        <strong>Whale sharks, mobulas and small-group diving</strong>
+        <p>Help guests choose fast with clear seasonality, skill level and direct WeTravel checkout.</p>
+        <a class="btn btn-coral" href={`${langPrefix}/tours/`}>Choose your trip</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section quick-chooser">
+    <div class="container">
+      <div class="compact-head">
+        <div class="eyebrow">Start here</div>
+        <h2>{chooserTitle[lang]}</h2>
+      </div>
+      <div class="chooser-grid">
+        <a class="chooser-card" href={`${langPrefix}/tours/padi-courses-cabo/`}>
+          <span>New divers</span>
+          <strong>Start with PADI</strong>
+        </a>
+        <a class="chooser-card" href={`${langPrefix}/tours/diving-la-paz/`}>
+          <span>Certified divers</span>
+          <strong>Book La Paz</strong>
+        </a>
+        <a class="chooser-card" href={`${langPrefix}/tours/gordo-banks-diving/`}>
+          <span>Advanced divers</span>
+          <strong>Go pelagic</strong>
+        </a>
+        <a class="chooser-card" href={`https://wa.me/${contact.phoneRaw}`} target="_blank" rel="noopener">
+          <span>Not sure?</span>
+          <strong>Ask WhatsApp</strong>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tour-showcase" id="tours">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">{c.sections.toursEyebrow}</div>
+          <h2>{c.sections.toursTitle}</h2>
+        </div>
+        <a class="btn btn-secondary" href={`${langPrefix}/tours/`}>View all tours</a>
+      </div>
+      <div class="grid grid-3 spacious-cards">
+        {featuredTours.map((tour) => <TourCard tour={tour} lang={lang} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="wildlife">
+    <div class="container">
+      <div class="section-head stacked-head">
+        <div>
+          <div class="eyebrow">{c.sections.wildlifeEyebrow}</div>
+          <h2>{c.sections.wildlifeTitle}</h2>
+          <p>{wildlifeText[lang]}</p>
+        </div>
+      </div>
+      <div class="grid grid-4">
+        {wildlife.map((item) => (
+          <div class="wildlife-item" style={`--wildlife-image: url('${item.image}')`}>
+            <strong>{item.name}</strong>
+            <span>{item.season}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container why-split">
+      <div class="section-head vertical-head">
+        <div>
+          <div class="eyebrow">{c.sections.whyEyebrow}</div>
+          <h2>{c.sections.whyTitle}</h2>
+          <p>{whyIntro[lang]}</p>
+        </div>
+      </div>
+      <div class="why-vertical">
+        {why[lang].map(([icon, title, text]) => (
+          <div class="why-row">
+            <span class="why-icon">{icon}</span>
+            <div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Real trips. Real water.</div>
+          <h2>What guests come here to see</h2>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        {gallery.map((image, index) => (
+          <figure class={index === 0 ? 'gallery-item wide' : 'gallery-item'}>
+            <img src={image.src} alt={image.alt} loading="lazy" />
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+</main>

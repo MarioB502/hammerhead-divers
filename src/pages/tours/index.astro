@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TourCard from '../../components/TourCard.astro';
+import { copy } from '../../data/site';
+import { tours } from '../../data/tours';
+
+const lang = 'en';
+const c = copy[lang];
+---
+
+<BaseLayout title="Cabo Diving Tours | Hammerhead Divers" description="Compare scuba diving, wildlife and PADI course experiences from Hammerhead Divers. Book through WeTravel or ask on WhatsApp." lang={lang}>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <div class="eyebrow">{c.sections.toursEyebrow}</div>
+        <h1>Ocean tours</h1>
+        <p>Structured for fast buying decisions: price, duration, level, inclusions, season and direct WeTravel booking links.</p>
+      </div>
+    </section>
+    <section class="section tour-catalog">
+      <div class="container grid grid-3 tour-card-grid">
+        {tours.map((tour) => <TourCard tour={tour} lang={lang} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
