@@ -7,10 +7,16 @@ category: "Wildlife"
 keywords: ["whale shark tour La Paz", "whale shark season Baja", "La Paz wildlife tour"]
 ---
 
-Whale shark season is one of Baja California Sur’s strongest travel hooks. For many visitors, it becomes the anchor activity around which they plan the rest of their Cabo or La Paz itinerary.
+A whale shark encounter can be a memorable part of a trip to Baja California Sur. If it is a priority for your visit, start by checking the seasonal window and asking about availability for your dates.
 
-The best website flow is simple: explain the season, set expectations, answer logistics questions, and give travelers two clear actions: book through WeTravel or ask a question on WhatsApp.
+## When to plan your visit
 
-## Conversion notes
+Our marine life calendar lists December through April for whale sharks. Use this as a planning window rather than a promise of an encounter: sightings depend on natural conditions and are not guaranteed.
 
-Travelers often need help with timing, transfer expectations, group size, and whether the experience fits their comfort level. Clear answers reduce WhatsApp friction and improve booking quality.
+## Before you book
+
+Contact our team to discuss your travel dates, departure arrangements, group size and what the experience includes. Ask which activity is appropriate for your comfort level and confirm the details of the specific trip you want.
+
+## Find your ocean experience
+
+Compare the available activities in our [tour catalog](/tours/). For questions about whale shark encounters in La Paz, contact Hammerhead Divers through WhatsApp. Once you have selected and confirmed your trip, reservations are handled through WeTravel.

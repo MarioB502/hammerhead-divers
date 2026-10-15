@@ -1,29 +1,10 @@
 ---
 import { getCollection } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-
+import JournalArticle from '../../components/JournalArticle.astro';
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const posts = (await getCollection('blog')).filter((post) => post.data.lang === 'en');
   return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
 }
-
 const { post } = Astro.props;
-const { Content } = await post.render();
 ---
-
-<BaseLayout title={`${post.data.title} | Hammerhead Divers`} description={post.data.description} lang={post.data.lang}>
-  <main>
-    <article class="page-hero">
-      <div class="container">
-        <div class="eyebrow">{post.data.category}</div>
-        <h1>{post.data.title}</h1>
-        <p>{post.data.description}</p>
-      </div>
-    </article>
-    <section class="section">
-      <div class="container" style="max-width: 780px;">
-        <Content />
-      </div>
-    </section>
-  </main>
-</BaseLayout>
+<JournalArticle post={post} lang="en" />

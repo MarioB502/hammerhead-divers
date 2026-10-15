@@ -8,10 +8,11 @@ type Props = {
   description: string;
   lang?: Lang;
   canonical?: string;
+  languagePaths?: Partial<Record<Lang, string>>;
   schema?: Record<string, unknown>;
 };
 
-const { title, description, lang = 'en', canonical, schema } = Astro.props;
+const { title, description, lang = 'en', canonical, schema, languagePaths } = Astro.props;
 const c = copy[lang];
 const langPrefix = lang === 'en' ? '' : `/${lang}`;
 const whatsMessage = encodeURIComponent(
@@ -54,7 +55,7 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
         <div class="nav-actions">
           <div class="lang-switch" aria-label="Language selector">
             {Object.entries(languages).map(([code, item]) => (
-              <a class={code === lang ? 'active' : ''} href={item.path}>{item.label}</a>
+              <a class={code === lang ? 'active' : ''} href={languagePaths?.[code as Lang] ?? item.path}>{item.label}</a>
             ))}
           </div>
           <a class="btn btn-primary" href={contact.wetravel} target="_blank" rel="noopener">{c.nav.book}</a>

@@ -1,0 +1,39 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+import { blogUI, postCopy } from '../data/blog';
+import { sightingNote } from '../data/approved-copy';
+import type { Lang } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import JournalCard from './JournalCard.astro';
+import JournalCTA from './JournalCTA.astro';
+import '../styles/journal.css';
+type Props = { post: CollectionEntry<'blog'>; lang: Lang };
+const { post, lang } = Astro.props;
+const ui = blogUI[lang];
+const item = postCopy(post,lang);
+const prefix = lang === 'en' ? '' : `/${lang}`;
+const { Content, headings } = await post.render();
+const contents = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+const related = (await getCollection('blog')).filter((other) => other.data.lang === post.data.lang && other.slug !== post.slug).slice(0,2);
+const schema = { '@context': 'https://schema.org', '@type': 'BlogPosting', headline: post.data.title, description: post.data.description, datePublished: post.data.pubDate.toISOString(), inLanguage: post.data.lang, image: new URL(item.image,Astro.url).href, publisher: { '@type': 'Organization', name: 'Hammerhead Divers' } };
+---
+<BaseLayout title={`${item.title} | Hammerhead Divers`} description={item.description} lang={lang} schema={schema} languagePaths={{ en: `/blog/${post.slug}/`, es: `/es/blog/${post.slug}/`, fr: `/fr/blog/${post.slug}/` }}>
+  <main class="journal-page">
+    <article>
+      <header class="container article-heading">
+        <a class="journal-back" href={`${prefix}/blog/`}><span aria-hidden="true">←</span> {ui.back}</a>
+        <div class="journal-meta"><span>{item.category}</span><span>{item.minutes} {ui.minutes}</span></div>
+        <h1>{item.title}</h1>
+        <p class="article-deck">{item.description}</p>
+        <div class="article-byline"><span>{ui.team}</span><time datetime={post.data.pubDate.toISOString()}>{ui.published} {item.date}</time>{post.data.lang !== lang && <span class="journal-language">{ui.language}</span>}</div>
+      </header>
+      <figure class="container article-cover"><img src={item.image} alt="" width="1200" height="800" fetchpriority="high" /></figure>
+      <div class="container article-layout">
+        <aside class="article-sidebar">{contents.length > 0 && <nav aria-label={ui.contents}><h2>{ui.contents}</h2><ol>{contents.map((heading) => <li><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ol></nav>}<a class="journal-read" href={`${prefix}/tours/`}>{ui.tours} <span aria-hidden="true">↗</span></a></aside>
+        <div><div class="article-prose" lang={post.data.lang}><Content /></div><p class="article-note">{sightingNote[lang]}</p><a class="journal-back article-return" href={`${prefix}/blog/`}>← {ui.back}</a></div>
+      </div>
+    </article>
+    <section class="container journal-related"><div class="journal-section-label"><h2>{ui.related}</h2></div><div class="journal-grid">{related.map((other,index) => <JournalCard post={other} lang={lang} index={index+1} />)}</div><JournalCTA lang={lang} /></section>
+  </main>
+</BaseLayout>

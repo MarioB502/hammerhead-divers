@@ -1,0 +1,24 @@
+---
+import { blogUI, postCopy } from '../data/blog';
+import type { CollectionEntry } from 'astro:content';
+import type { Lang } from '../data/site';
+type Props = { post: CollectionEntry<'blog'>; lang: Lang; featured?: boolean; index?: number };
+const { post, lang, featured = false, index = 1 } = Astro.props;
+const item = postCopy(post, lang);
+const ui = blogUI[lang];
+---
+<article class:list={['journal-card', { 'journal-featured': featured }]}>
+  <a class="journal-card-photo" href={item.href} aria-label={item.title}>
+    <img src={item.image} alt="" width="1200" height="800" loading={featured ? 'eager' : 'lazy'} />
+    <span class="journal-number" aria-hidden="true">{String(index).padStart(2, '0')}</span>
+  </a>
+  <div class="journal-card-body">
+    <div class="journal-meta"><span>{item.category}</span><span>{item.minutes} {ui.minutes}</span></div>
+    {featured ? <h2><a href={item.href}>{item.title}</a></h2> : <h3><a href={item.href}>{item.title}</a></h3>}
+    <p>{item.description}</p>
+    <div class="journal-card-bottom">
+      <a class="journal-read" href={item.href}>{ui.read} <span aria-hidden="true">↗</span></a>
+      {post.data.lang !== lang && <span class="journal-language">{ui.language}</span>}
+    </div>
+  </div>
+</article>
