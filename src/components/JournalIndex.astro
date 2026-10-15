@@ -9,7 +9,7 @@ import '../styles/journal.css';
 type Props = { lang: Lang; eyebrow: string; title: string; description: string };
 const { lang, eyebrow, title, description } = Astro.props;
 const ui = blogUI[lang];
-const posts = (await getCollection('blog')).filter((post) => post.data.lang === 'en').sort((a,b) => b.data.pubDate.valueOf()-a.data.pubDate.valueOf() || a.slug.localeCompare(b.slug));
+const posts = (await getCollection('blog')).filter((post) => post.data.lang === lang).sort((a,b) => b.data.pubDate.valueOf()-a.data.pubDate.valueOf() || a.slug.localeCompare(b.slug));
 const [featuredPost, ...morePosts] = posts;
 ---
 <main class="journal-page">

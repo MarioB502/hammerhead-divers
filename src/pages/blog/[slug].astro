@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import JournalArticle from '../../components/JournalArticle.astro';
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).filter((post) => post.data.lang === 'en');
-  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+  return posts.map((post) => ({ params: { slug: post.slug.split('/').pop()! }, props: { post } }));
 }
 const { post } = Astro.props;
 ---
