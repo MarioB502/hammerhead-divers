@@ -1,6 +1,7 @@
 ---
 import { text } from '../data/approved-copy';
 import '../styles/global.css';
+import { contactUI } from '../data/contact-page';
 import { contact, copy, languages, type Lang } from '../data/site';
 
 type Props = {
@@ -51,6 +52,7 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
           <a href={`${langPrefix}/#wildlife`}>{c.nav.wildlife}</a>
           <a href={`${langPrefix}/#about`}>{c.nav.about}</a>
           <a href={`${langPrefix}/blog/`}>{c.nav.blog}</a>
+          <a href={`${langPrefix}/contact/`}>{contactUI[lang].nav}</a>
         </nav>
         <div class="nav-actions">
           <div class="lang-switch" aria-label="Language selector">
@@ -79,7 +81,7 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
             <p><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[0]}</a><br /><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[1]}</a><br /><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[2]}</a></p>
           </div>
           <div>
-            <h3>Contact</h3>
+            <h3><a href={`${langPrefix}/contact/`}>{contactUI[lang].nav}</a></h3>
             <p><a href={whatsUrl}>WhatsApp</a><br /><a href={`mailto:${contact.email}`}>{contact.email}</a><br />{contact.phone}</p>
           </div>
           <div>

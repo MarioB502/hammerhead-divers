@@ -1,6 +1,7 @@
 ---
 import { text, text as approvedText, sightingNote } from '../data/approved-copy';
 import TourCard from './TourCard.astro';
+import Reviews from './Reviews.astro';
 import { contact, copy, type Lang } from '../data/site';
 import { gallery, tours, wildlife } from '../data/tours';
 
@@ -178,4 +179,5 @@ const whyIntro = {
       </div>
     </div>
   </section>
+  <Reviews provider="tripadvisor" lang={lang} />
 </main>
