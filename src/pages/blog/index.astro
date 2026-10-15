@@ -1,4 +1,5 @@
 ---
+import { text } from '../../data/approved-copy';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { copy } from '../../data/site';
@@ -18,9 +19,9 @@ const [featuredPost, ...morePosts] = posts;
   <main>
     <section class="page-hero blog-hero">
       <div class="container">
-        <div class="eyebrow">{c.sections.blogEyebrow}</div>
-        <h1>Dive journal</h1>
-        <p>Practical Cabo and Baja diving guides for travelers comparing seasons, marine life, safety, and the right ocean experience before booking.</p>
+        <div class="eyebrow">{text(lang,23,'Eyebrow',c.sections.blogEyebrow)}</div>
+        <h1>{text(lang, 23, "Título", "Dive journal")}</h1>
+        <p>{text(lang, 23, "Descripción", "Practical Cabo and Baja diving guides for travelers comparing seasons, marine life, safety, and the right ocean experience before booking.")}</p>
       </div>
     </section>
     <section class="section blog-section">

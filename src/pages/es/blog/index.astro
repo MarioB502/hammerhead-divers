@@ -1,4 +1,5 @@
 ---
+import { text } from '../../../data/approved-copy';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
@@ -9,6 +10,7 @@ const postImages: Record<string, string> = {
   'gordo-banks-hammerhead-diving': '/assets/hammerhead-shark.jpg',
   'whale-shark-tour-la-paz-guide': '/assets/whale-shark-hero.jpg',
 };
+const articleNumber = (slug: string) => ({'best-time-to-dive-in-cabo': 1, 'gordo-banks-hammerhead-diving': 2, 'whale-shark-tour-la-paz-guide': 3}[slug]);
 const [featuredPost, ...morePosts] = posts;
 ---
 
@@ -16,23 +18,23 @@ const [featuredPost, ...morePosts] = posts;
   <main>
     <section class="page-hero blog-hero">
       <div class="container">
-        <div class="eyebrow">Diario de buceo</div>
-        <h1>Blog de buceo</h1>
-        <p>Guias practicas de Cabo y Baja para viajeros que comparan temporadas, vida marina, seguridad y la experiencia ideal antes de reservar.</p>
+        <div class="eyebrow">{text(lang, 23, "Eyebrow", "Diario de buceo")}</div>
+        <h1>{text(lang, 23, "Título", "Blog de buceo")}</h1>
+        <p>{text(lang, 23, "Descripción", "Guias practicas de Cabo y Baja para viajeros que comparan temporadas, vida marina, seguridad y la experiencia ideal antes de reservar.")}</p>
       </div>
     </section>
     <section class="section blog-section">
       <div class="container">
         {featuredPost && (
           <article class="featured-post">
-            <a class="featured-post-image" href={`/blog/${featuredPost.slug}/`} aria-label={featuredPost.data.title}>
+            <a class="featured-post-image" href={`/blog/${featuredPost.slug}/`} aria-label={text(lang,23,`Artículo ${articleNumber(featuredPost.slug)} – título`,featuredPost.data.title) }>
               <img src={postImages[featuredPost.slug] ?? '/assets/arch-cabo.jpg'} alt="" loading="eager" />
             </a>
             <div class="featured-post-body">
-              <span class="pill">{featuredPost.data.category}</span>
-              <h2>{featuredPost.data.title}</h2>
-              <p>{featuredPost.data.description}</p>
-              <a class="btn btn-primary" href={`/blog/${featuredPost.slug}/`}>Leer articulo</a>
+              <span class="pill">{text(lang,23,`Artículo ${articleNumber(featuredPost.slug)} – categoría`,featuredPost.data.category) }</span>
+              <h2>{text(lang,23,`Artículo ${articleNumber(featuredPost.slug)} – título`,featuredPost.data.title) }</h2>
+              <p>{text(lang,23,`Artículo ${articleNumber(featuredPost.slug)} – descripción`,featuredPost.data.description) }</p>
+              <a class="btn btn-primary" href={`/blog/${featuredPost.slug}/`}>Leer artículo</a>
             </div>
           </article>
         )}
@@ -40,14 +42,14 @@ const [featuredPost, ...morePosts] = posts;
         <div class="blog-grid">
           {morePosts.map((post) => (
             <article class="card post-card">
-              <a class="post-card-image" href={`/blog/${post.slug}/`} aria-label={post.data.title}>
+              <a class="post-card-image" href={`/blog/${post.slug}/`} aria-label={text(lang,23,`Artículo ${articleNumber(post.slug)} – título`,post.data.title) }>
                 <img src={postImages[post.slug] ?? '/assets/arch-cabo.jpg'} alt="" loading="lazy" />
               </a>
               <div class="post-card-body">
-                <span class="pill">{post.data.category}</span>
-                <h3>{post.data.title}</h3>
-                <p>{post.data.description}</p>
-                <a class="btn btn-secondary" href={`/blog/${post.slug}/`}>Leer articulo</a>
+                <span class="pill">{text(lang,23,`Artículo ${articleNumber(post.slug)} – categoría`,post.data.category) }</span>
+                <h3>{text(lang,23,`Artículo ${articleNumber(post.slug)} – título`,post.data.title) }</h3>
+                <p>{text(lang,23,`Artículo ${articleNumber(post.slug)} – descripción`,post.data.description) }</p>
+                <a class="btn btn-secondary" href={`/blog/${post.slug}/`}>Leer artículo</a>
               </div>
             </article>
           ))}

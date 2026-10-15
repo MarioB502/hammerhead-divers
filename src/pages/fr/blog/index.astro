@@ -1,4 +1,5 @@
 ---
+import { text } from '../../../data/approved-copy';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 
@@ -16,9 +17,9 @@ const [featuredPost, ...morePosts] = posts;
   <main>
     <section class="page-hero blog-hero">
       <div class="container">
-        <div class="eyebrow">Journal de plongee</div>
-        <h1>Journal de plongee</h1>
-        <p>Guides pratiques sur Cabo et Baja pour comparer les saisons, la faune marine, la securite et choisir la bonne experience avant de reserver.</p>
+        <div class="eyebrow">{text(lang, 23, "Eyebrow", "Journal de plongee")}</div>
+        <h1>{text(lang, 23, "Título", "Journal de plongee")}</h1>
+        <p>{text(lang, 23, "Descripción", "Guides pratiques sur Cabo et Baja pour comparer les saisons, la faune marine, la securite et choisir la bonne experience avant de reserver.")}</p>
       </div>
     </section>
     <section class="section blog-section">

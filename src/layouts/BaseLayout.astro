@@ -1,4 +1,5 @@
 ---
+import { text } from '../data/approved-copy';
 import '../styles/global.css';
 import { contact, copy, languages, type Lang } from '../data/site';
 
@@ -70,11 +71,11 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
             <a class="brand" href={langPrefix || '/'}>
               <img class="brand-logo footer-brand-logo" src="/assets/logo-icon.png" alt="Hammerhead Divers logo" width="56" height="56" />
             </a>
-            <p>Premium boutique diving and ocean adventures in Cabo San Lucas, Baja California Sur. Women-owned, small-group, conservation-driven.</p>
+            <p>{text(lang, 3, "Footer – posicionamiento", "Premium boutique diving and ocean adventures in Cabo San Lucas, Baja California Sur. Women-owned, small-group, conservation-driven.")}</p>
           </div>
           <div>
-            <h3>{c.nav.tours}</h3>
-            <p><a href={`${langPrefix}/tours/`}>Scuba diving</a><br /><a href={`${langPrefix}/tours/`}>Wildlife tours</a><br /><a href={`${langPrefix}/tours/`}>PADI courses</a></p>
+            <h3>{text(lang,3,'Footer – categoría',c.nav.tours)}</h3>
+            <p><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[0]}</a><br /><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[1]}</a><br /><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[2]}</a></p>
           </div>
           <div>
             <h3>Contact</h3>
@@ -82,7 +83,7 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
           </div>
           <div>
             <h3>Social</h3>
-            <p><a href={contact.instagram}>Instagram</a><br /><a href={contact.facebook}>Facebook</a><br /><a href={contact.tripadvisor}>TripAdvisor</a></p>
+            <p><a href={contact.instagram}>Instagram</a><br /><a href={contact.facebook}>Facebook</a><br /><a href={contact.tripadvisor}>TripAdvisor</a><br /><a href={contact.tiktok}>TikTok</a></p>
           </div>
         </div>
         <div class="footer-bottom">© 2026 Hammerhead Divers · Site by B502 · Static build ready for HostGator</div>
