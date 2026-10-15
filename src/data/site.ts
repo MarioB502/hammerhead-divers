@@ -1,3 +1,4 @@
+import { text } from './approved-copy';
 export const languages = {
   en: { label: 'EN', path: '/' },
   es: { label: 'ES', path: '/es/' },
@@ -86,3 +87,24 @@ export const copy = {
 };
 
 export type Lang = keyof typeof copy;
+
+for (const lang of ['en', 'es', 'fr'] as const) {
+ const c = copy[lang];
+ const menu = text(lang, 3, 'Menú principal', [c.nav.tours,c.nav.wildlife,c.nav.about,c.nav.blog].join(' · ')).split(' · ');
+ [c.nav.tours,c.nav.wildlife,c.nav.about,c.nav.blog] = menu;
+ c.nav.book = text(lang,3,'CTA principal',c.nav.book);
+ c.cta.whats = text(lang,3,'CTA contacto',c.cta.whats);
+ c.hero.eyebrow = text(lang,5,'Eyebrow',c.hero.eyebrow);
+ c.hero.title = text(lang,5,'Título principal',c.hero.title);
+ c.hero.text = text(lang,5,'Descripción',c.hero.text);
+ c.hero.primary = text(lang,5,'Botón 1',c.hero.primary);
+ c.hero.secondary = text(lang,5,'Botón 2',c.hero.secondary);
+ c.trust = c.trust.map((value,index) => text(lang,5,`Prueba / atributo ${index+1}`,value));
+ c.sections.toursEyebrow = text(lang,11,'Intro – etiqueta',c.sections.toursEyebrow);
+ c.sections.toursTitle = text(lang,11,'Intro – título',c.sections.toursTitle);
+ c.sections.wildlifeEyebrow = text(lang,13,'Etiqueta',c.sections.wildlifeEyebrow);
+ c.sections.wildlifeTitle = text(lang,13,'Título',c.sections.wildlifeTitle);
+ c.sections.whyEyebrow = text(lang,15,'Etiqueta',c.sections.whyEyebrow);
+ c.sections.whyTitle = text(lang,15,'Título',c.sections.whyTitle);
+ c.sections.blogEyebrow = text(lang,23,'Eyebrow',c.sections.blogEyebrow);
+}

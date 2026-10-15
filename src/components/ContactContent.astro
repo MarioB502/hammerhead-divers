@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Reviews from './Reviews.astro';
+import { contact, type Lang } from '../data/site';
+import { contactUI, place } from '../data/contact-page';
+import '../styles/contact.css';
+type Props = { lang: Lang };
+const { lang } = Astro.props;
+const ui = contactUI[lang];
+const prefix = lang === 'en' ? '' : `/${lang}`;
+const mapSrc = `https://maps.google.com/maps?cid=${place.cid}&hl=${lang}&z=17&output=embed`;
+---
+<BaseLayout title={`${ui.nav} | Hammerhead Divers`} description={ui.intro} lang={lang} languagePaths={{en:'/contact/',es:'/es/contact/',fr:'/fr/contact/'}}>
+ <main class="contact-page">
+  <section class="container contact-heading"><div class="eyebrow">{ui.eyebrow}</div><h1>{ui.title}</h1><p>{ui.intro}</p></section>
+  <section class="container contact-methods" aria-label={ui.nav}>
+   <a class="contact-method" href={`https://wa.me/${contact.phoneRaw}`}><span class="contact-number" aria-hidden="true">01 / WHATSAPP</span><h2>{ui.whats} <span aria-hidden="true">↗</span></h2><p>{ui.whatsText}</p><strong>{contact.phone}</strong></a>
+   <a class="contact-method" href={`mailto:${contact.email}`}><span class="contact-number" aria-hidden="true">02 / E-MAIL</span><h2>{ui.email} <span aria-hidden="true">↗</span></h2><p>{ui.emailText}</p><strong>{contact.email}</strong></a>
+   <a class="contact-method" href={`tel:+${contact.phoneRaw}`}><span class="contact-number" aria-hidden="true">03 / {lang==='fr'?'TÉLÉPHONE':lang==='es'?'TELÉFONO':'PHONE'}</span><h2>{ui.call} <span aria-hidden="true">↗</span></h2><p>{ui.callText}</p><strong>{contact.phone}</strong></a>
+  </section>
+  <section class="container contact-location"><div class="contact-location-copy"><div class="eyebrow">CABO SAN LUCAS MARINA</div><h2>{ui.location}</h2><p>{ui.locationText}</p><address>{contact.address}</address><a class="btn btn-coral" href={place.directions} target="_blank" rel="noopener noreferrer">{ui.directions} ↗</a><p class="contact-meeting">{ui.meeting}</p></div><div class="contact-map"><iframe src={mapSrc} title={ui.mapTitle} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><a href={place.maps} target="_blank" rel="noopener noreferrer">{ui.openMap} ↗</a></div></section>
+  <Reviews provider="google" lang={lang} />
+  <section class="container contact-booking"><div><div class="eyebrow">HAMMERHEAD DIVERS</div><h2>{ui.booking}</h2><p>{ui.bookText}</p></div><a class="btn btn-primary" href={`${prefix}/tours/`}>{ui.tours} ↗</a></section>
+ </main>
+</BaseLayout>

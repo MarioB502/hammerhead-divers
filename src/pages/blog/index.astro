@@ -1,60 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { copy } from '../../data/site';
-
+import JournalIndex from '../../components/JournalIndex.astro';
 const lang = 'en';
-const c = copy[lang];
-const posts = (await getCollection('blog')).filter((post) => post.data.lang === lang).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const postImages: Record<string, string> = {
-  'best-time-to-dive-in-cabo': '/assets/scuba-group.jpg',
-  'gordo-banks-hammerhead-diving': '/assets/hammerhead-shark.jpg',
-  'whale-shark-tour-la-paz-guide': '/assets/whale-shark-hero.jpg',
-};
-const [featuredPost, ...morePosts] = posts;
 ---
-
-<BaseLayout title="Dive Journal | Hammerhead Divers Blog" description="Scuba diving, wildlife and Baja California Sur travel guides from Hammerhead Divers." lang={lang}>
-  <main>
-    <section class="page-hero blog-hero">
-      <div class="container">
-        <div class="eyebrow">{c.sections.blogEyebrow}</div>
-        <h1>Dive journal</h1>
-        <p>Practical Cabo and Baja diving guides for travelers comparing seasons, marine life, safety, and the right ocean experience before booking.</p>
-      </div>
-    </section>
-    <section class="section blog-section">
-      <div class="container">
-        {featuredPost && (
-          <article class="featured-post">
-            <a class="featured-post-image" href={`/blog/${featuredPost.slug}/`} aria-label={featuredPost.data.title}>
-              <img src={postImages[featuredPost.slug] ?? '/assets/arch-cabo.jpg'} alt="" loading="eager" />
-            </a>
-            <div class="featured-post-body">
-              <span class="pill">{featuredPost.data.category}</span>
-              <h2>{featuredPost.data.title}</h2>
-              <p>{featuredPost.data.description}</p>
-              <a class="btn btn-primary" href={`/blog/${featuredPost.slug}/`}>Read article</a>
-            </div>
-          </article>
-        )}
-
-        <div class="blog-grid">
-          {morePosts.map((post) => (
-            <article class="card post-card">
-              <a class="post-card-image" href={`/blog/${post.slug}/`} aria-label={post.data.title}>
-                <img src={postImages[post.slug] ?? '/assets/arch-cabo.jpg'} alt="" loading="lazy" />
-              </a>
-              <div class="post-card-body">
-                <span class="pill">{post.data.category}</span>
-                <h3>{post.data.title}</h3>
-                <p>{post.data.description}</p>
-                <a class="btn btn-secondary" href={`/blog/${post.slug}/`}>Read article</a>
-              </div>
-            </article>
-          ))}
-        </div>
-      </div>
-    </section>
-  </main>
+<BaseLayout title="Dive Journal | Hammerhead Divers Blog" description="Scuba diving, wildlife and Baja California Sur travel guides from Hammerhead Divers." lang={lang} languagePaths={{ en: '/blog/', es: '/es/blog/', fr: '/fr/blog/' }}>
+  <JournalIndex lang={lang} eyebrow="Dive journal" title="Dive journal" description="Practical Cabo and Baja diving guides for travelers comparing seasons, marine life, safety, and the right ocean experience before booking." />
 </BaseLayout>

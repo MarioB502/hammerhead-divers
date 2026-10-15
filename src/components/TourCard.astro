@@ -1,33 +1,32 @@
 ---
+import { text, cardCopy } from '../data/approved-copy';
 import type { Tour } from '../data/tours';
 import { contact, copy, type Lang } from '../data/site';
 
-type Props = { tour: Tour; lang?: Lang };
-const { tour, lang = 'en' } = Astro.props;
+type Props = { tour: Tour; featured?: boolean; lang?: Lang };
+const { tour, lang = 'en', featured = false } = Astro.props;
 const c = copy[lang];
+const card = cardCopy(tour, lang, featured);
 const langPrefix = lang === 'en' ? '' : `/${lang}`;
 const whatsText = encodeURIComponent(`Hi, I would like information about ${tour.title.en}.`);
 const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsText}`;
 ---
 
 <article class="card tour-card">
-  <a class="tour-image" href={`${langPrefix}/tours/${tour.slug}/`} aria-label={tour.title[lang]}>
-    <img src={tour.image} alt={tour.title[lang]} loading="lazy" />
-    <span>{tour.badge}</span>
+  <a class="tour-image" href={`${langPrefix}/tours/${tour.slug}/`} aria-label={card.title}>
+    <img src={tour.image} alt={card.title} loading="lazy" />
+    <span>{card.badge}</span>
   </a>
   <div class="tour-card-copy">
-    <span class="pill tour-category">{tour.serviceType[lang]}</span>
-    <h3>{tour.title[lang]}</h3>
-    <p>{tour.summary[lang]}</p>
+    <span class="pill tour-category">{card.category}</span>
+    <h3>{card.title}</h3>
+    <p>{card.summary}</p>
   </div>
   <div class="meta">
-    <span>{tour.priceFrom}</span>
-    <span>{tour.duration}</span>
-    <span>{tour.groupSize}</span>
-    <span>{tour.level}</span>
+    {card.meta.map((value) => <span>{value}</span>)}
   </div>
   <div class="card-actions">
-    <a class="btn btn-primary" href={`${langPrefix}/tours/${tour.slug}/`}>{c.cta.details}</a>
-    <a class="btn btn-whatsapp" href={whatsUrl} aria-label={`${c.cta.whats}: ${tour.title[lang]}`}>WhatsApp</a>
+    <a class="btn btn-primary" href={`${langPrefix}/tours/${tour.slug}/`}>{card.actions[0]}</a>
+    <a class="btn btn-whatsapp" href={whatsUrl} aria-label={`${c.cta.whats}: ${card.title}`}>{card.actions[1]}</a>
   </div>
 </article>

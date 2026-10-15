@@ -1,5 +1,7 @@
 ---
+import { text, text as approvedText, sightingNote } from '../data/approved-copy';
 import TourCard from './TourCard.astro';
+import Reviews from './Reviews.astro';
 import { contact, copy, type Lang } from '../data/site';
 import { gallery, tours, wildlife } from '../data/tours';
 
@@ -66,10 +68,10 @@ const whyIntro = {
         </div>
       </div>
       <aside class="hero-booking-card">
-        <span>Most requested this season</span>
-        <strong>Whale sharks, mobulas and small-group diving</strong>
-        <p>Help guests choose fast with clear seasonality, skill level and direct WeTravel checkout.</p>
-        <a class="btn btn-coral" href={`${langPrefix}/tours/`}>Choose your trip</a>
+        <span>{text(lang, 7, "Etiqueta", "Most requested this season")}</span>
+        <strong>{text(lang, 7, "Mensaje destacado", "Whale sharks, mobulas and small-group diving")}</strong>
+        <p>{text(lang, 7, "Texto de apoyo", "Help guests choose fast with clear seasonality, skill level and direct WeTravel checkout.")}</p>
+        <a class="btn btn-coral" href={`${langPrefix}/tours/`}>{text(lang, 7, "CTA", "Choose your trip")}</a>
       </aside>
     </div>
   </section>
@@ -77,25 +79,25 @@ const whyIntro = {
   <section class="section quick-chooser">
     <div class="container">
       <div class="compact-head">
-        <div class="eyebrow">Start here</div>
-        <h2>{chooserTitle[lang]}</h2>
+        <div class="eyebrow">{text(lang, 9, "Etiqueta", "Start here")}</div>
+        <h2>{text(lang,9,'Título',chooserTitle[lang])}</h2>
       </div>
       <div class="chooser-grid">
         <a class="chooser-card" href={`${langPrefix}/tours/padi-courses-cabo/`}>
-          <span>New divers</span>
-          <strong>Start with PADI</strong>
+          <span>{text(lang, 9, "Opción 1 – perfil", "New divers")}</span>
+          <strong>{text(lang, 9, "Opción 1 – acción", "Start with PADI")}</strong>
         </a>
         <a class="chooser-card" href={`${langPrefix}/tours/diving-la-paz/`}>
-          <span>Certified divers</span>
-          <strong>Book La Paz</strong>
+          <span>{text(lang, 9, "Opción 2 – perfil", "Certified divers")}</span>
+          <strong>{text(lang, 9, "Opción 2 – acción", "Book La Paz")}</strong>
         </a>
         <a class="chooser-card" href={`${langPrefix}/tours/gordo-banks-diving/`}>
-          <span>Advanced divers</span>
-          <strong>Go pelagic</strong>
+          <span>{text(lang, 9, "Opción 3 – perfil", "Advanced divers")}</span>
+          <strong>{text(lang, 9, "Opción 3 – acción", "Go pelagic")}</strong>
         </a>
         <a class="chooser-card" href={`https://wa.me/${contact.phoneRaw}`} target="_blank" rel="noopener">
-          <span>Not sure?</span>
-          <strong>Ask WhatsApp</strong>
+          <span>{text(lang,9,'Opción 4','Not sure? Ask WhatsApp').split('?')[0]}?</span>
+          <strong>{text(lang,9,'Opción 4','Not sure? Ask WhatsApp').split('?').slice(1).join('?').trim()}</strong>
         </a>
       </div>
     </div>
@@ -108,10 +110,10 @@ const whyIntro = {
           <div class="eyebrow">{c.sections.toursEyebrow}</div>
           <h2>{c.sections.toursTitle}</h2>
         </div>
-        <a class="btn btn-secondary" href={`${langPrefix}/tours/`}>View all tours</a>
+        <a class="btn btn-secondary" href={`${langPrefix}/tours/`}>{text(lang, 11, "CTA catálogo", "View all tours")}</a>
       </div>
       <div class="grid grid-3 spacious-cards">
-        {featuredTours.map((tour) => <TourCard tour={tour} lang={lang} />)}
+        {featuredTours.map((tour) => <TourCard tour={tour} lang={lang} featured />)}
       </div>
     </div>
   </section>
@@ -122,17 +124,18 @@ const whyIntro = {
         <div>
           <div class="eyebrow">{c.sections.wildlifeEyebrow}</div>
           <h2>{c.sections.wildlifeTitle}</h2>
-          <p>{wildlifeText[lang]}</p>
+          <p>{text(lang,13,'Descripción',wildlifeText[lang])}</p>
         </div>
       </div>
       <div class="grid grid-4">
         {wildlife.map((item) => (
           <div class="wildlife-item" style={`--wildlife-image: url('${item.image}')`}>
             <strong>{item.name}</strong>
-            <span>{item.season}</span>
+            <span>{text(lang,13,item.name,item.season)}</span>
           </div>
         ))}
       </div>
+      <p>{sightingNote[lang]}</p>
     </div>
   </section>
 
@@ -142,7 +145,7 @@ const whyIntro = {
         <div>
           <div class="eyebrow">{c.sections.whyEyebrow}</div>
           <h2>{c.sections.whyTitle}</h2>
-          <p>{whyIntro[lang]}</p>
+          <p>{text(lang,15,'Introducción',whyIntro[lang])}</p>
         </div>
       </div>
       <div class="why-vertical">
@@ -150,8 +153,8 @@ const whyIntro = {
           <div class="why-row">
             <span class="why-icon">{icon}</span>
             <div>
-              <h3>{title}</h3>
-              <p>{text}</p>
+              <h3>{approvedText(lang,15,`Diferenciador ${icon} – título`,title)}</h3>
+              <p>{approvedText(lang,15,`Diferenciador ${icon} – texto`,text)}</p>
             </div>
           </div>
         ))}
@@ -163,17 +166,18 @@ const whyIntro = {
     <div class="container">
       <div class="section-head">
         <div>
-          <div class="eyebrow">Real trips. Real water.</div>
-          <h2>What guests come here to see</h2>
+          <div class="eyebrow">{text(lang, 17, "Etiqueta", "Real trips. Real water.")}</div>
+          <h2>{text(lang, 17, "Título", "What guests come here to see")}</h2>
         </div>
       </div>
       <div class="gallery-grid">
         {gallery.map((image, index) => (
           <figure class={index === 0 ? 'gallery-item wide' : 'gallery-item'}>
-            <img src={image.src} alt={image.alt} loading="lazy" />
+            <img src={image.src} alt={text(lang,17,`Imagen / alt ${index+1}`,image.alt)} loading="lazy" />
           </figure>
         ))}
       </div>
     </div>
   </section>
+  <Reviews provider="tripadvisor" lang={lang} />
 </main>

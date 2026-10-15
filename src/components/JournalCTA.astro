@@ -1,0 +1,12 @@
+---
+import { blogUI } from '../data/blog';
+import { contact, type Lang } from '../data/site';
+type Props = { lang: Lang };
+const { lang } = Astro.props;
+const ui = blogUI[lang];
+const prefix = lang === 'en' ? '' : `/${lang}`;
+---
+<section class="journal-cta">
+  <div><div class="eyebrow">{ui.label}</div><h2>{ui.planning}</h2><p>{ui.planningText}</p></div>
+  <div class="journal-cta-actions"><a class="btn btn-coral" href={`${prefix}/tours/`}>{ui.tours}</a><a class="journal-read" href={`https://wa.me/${contact.phoneRaw}`}>{ui.contact} <span aria-hidden="true">↗</span></a></div>
+</section>

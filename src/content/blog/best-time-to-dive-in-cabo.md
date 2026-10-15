@@ -7,17 +7,21 @@ category: "Diving guide"
 keywords: ["best time to dive in Cabo", "Cabo San Lucas scuba diving", "Baja diving seasons"]
 ---
 
-Cabo San Lucas can be dived year-round, but the best month depends on what the traveler wants to see.
+Cabo San Lucas offers diving throughout the year, with different marine encounters shaping each season. When planning your visit, think about what you would most like to see and the kind of ocean experience you want.
 
-Summer and fall are strong for warmer water, better visibility windows, and pelagic encounters. Winter and spring are ideal for whale activity and many seasonal wildlife experiences across Baja California Sur.
+Summer and fall offer opportunities to explore Baja’s underwater landscapes and pelagic life. Winter and spring bring whale activity and other seasonal encounters around Cabo and La Paz.
 
-For travelers who care about comfort, certification level, and marine life, the best first step is to choose the encounter first, then match the trip to the season.
+## Plan around marine life
 
-## Quick seasonal guide
+Use these seasonal windows as a starting point for your trip:
 
 - Whale sharks: December to April.
-- Humpback whales: November to April.
+- Humpback whales: December to April.
 - Mobula rays: March to July.
-- Hammerhead sharks: June to November.
+- Hammerhead sharks: possible throughout the year; sightings depend on natural conditions and are not guaranteed.
 
-Hammerhead Divers keeps groups small so each trip can be planned around conditions, safety, and the guest’s real experience level.
+## Choose your experience
+
+Compare the destination, duration and required certification before choosing a tour. Our team can help you match your dates and experience level with the available trips.
+
+For a personalized plan, [explore our tours](/tours/) or contact Hammerhead Divers before booking.

@@ -1,5 +1,7 @@
 ---
+import { text } from '../data/approved-copy';
 import '../styles/global.css';
+import { contactUI } from '../data/contact-page';
 import { contact, copy, languages, type Lang } from '../data/site';
 
 type Props = {
@@ -7,10 +9,11 @@ type Props = {
   description: string;
   lang?: Lang;
   canonical?: string;
+  languagePaths?: Partial<Record<Lang, string>>;
   schema?: Record<string, unknown>;
 };
 
-const { title, description, lang = 'en', canonical, schema } = Astro.props;
+const { title, description, lang = 'en', canonical, schema, languagePaths } = Astro.props;
 const c = copy[lang];
 const langPrefix = lang === 'en' ? '' : `/${lang}`;
 const whatsMessage = encodeURIComponent(
@@ -49,11 +52,12 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
           <a href={`${langPrefix}/#wildlife`}>{c.nav.wildlife}</a>
           <a href={`${langPrefix}/#about`}>{c.nav.about}</a>
           <a href={`${langPrefix}/blog/`}>{c.nav.blog}</a>
+          <a href={`${langPrefix}/contact/`}>{contactUI[lang].nav}</a>
         </nav>
         <div class="nav-actions">
           <div class="lang-switch" aria-label="Language selector">
             {Object.entries(languages).map(([code, item]) => (
-              <a class={code === lang ? 'active' : ''} href={item.path}>{item.label}</a>
+              <a class={code === lang ? 'active' : ''} href={languagePaths?.[code as Lang] ?? item.path}>{item.label}</a>
             ))}
           </div>
           <a class="btn btn-primary" href={contact.wetravel} target="_blank" rel="noopener">{c.nav.book}</a>
@@ -70,19 +74,19 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
             <a class="brand" href={langPrefix || '/'}>
               <img class="brand-logo footer-brand-logo" src="/assets/logo-icon.png" alt="Hammerhead Divers logo" width="56" height="56" />
             </a>
-            <p>Premium boutique diving and ocean adventures in Cabo San Lucas, Baja California Sur. Women-owned, small-group, conservation-driven.</p>
+            <p>{text(lang, 3, "Footer – posicionamiento", "Premium boutique diving and ocean adventures in Cabo San Lucas, Baja California Sur. Women-owned, small-group, conservation-driven.")}</p>
           </div>
           <div>
-            <h3>{c.nav.tours}</h3>
-            <p><a href={`${langPrefix}/tours/`}>Scuba diving</a><br /><a href={`${langPrefix}/tours/`}>Wildlife tours</a><br /><a href={`${langPrefix}/tours/`}>PADI courses</a></p>
+            <h3>{text(lang,3,'Footer – categoría',c.nav.tours)}</h3>
+            <p><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[0]}</a><br /><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[1]}</a><br /><a href={`${langPrefix}/tours/`}>{text(lang,3,'Footer – links','Scuba diving · Wildlife tours · PADI courses').split(' · ')[2]}</a></p>
           </div>
           <div>
-            <h3>Contact</h3>
+            <h3><a href={`${langPrefix}/contact/`}>{contactUI[lang].nav}</a></h3>
             <p><a href={whatsUrl}>WhatsApp</a><br /><a href={`mailto:${contact.email}`}>{contact.email}</a><br />{contact.phone}</p>
           </div>
           <div>
             <h3>Social</h3>
-            <p><a href={contact.instagram}>Instagram</a><br /><a href={contact.facebook}>Facebook</a><br /><a href={contact.tripadvisor}>TripAdvisor</a></p>
+            <p><a href={contact.instagram}>Instagram</a><br /><a href={contact.facebook}>Facebook</a><br /><a href={contact.tripadvisor}>TripAdvisor</a><br /><a href={contact.tiktok}>TikTok</a></p>
           </div>
         </div>
         <div class="footer-bottom">© 2026 Hammerhead Divers · Site by B502 · Static build ready for HostGator</div>

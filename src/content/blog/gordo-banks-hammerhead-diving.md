@@ -7,10 +7,18 @@ category: "Advanced diving"
 keywords: ["Gordo Banks diving", "hammerhead sharks Cabo", "advanced diving Cabo"]
 ---
 
-Gordo Banks is one of the most recognized advanced dive sites near Los Cabos. It is known for blue-water conditions, current, depth, and the possibility of seeing scalloped hammerhead sharks.
+Gordo Banks is one of Baja’s distinctive offshore dive sites, known for scalloped hammerhead sharks, pelagic encounters and a deep reef. It is an experience for advanced certified divers.
 
-This is not positioned as a beginner dive. Divers should be comfortable with deeper profiles, current, buoyancy control, and following guide instructions.
+## Is Gordo Banks right for you?
 
-## Why it sells
+This trip is intended for experienced divers rather than beginners. Talk to our team about your certification, recent diving experience and travel dates so we can discuss whether the trip fits your plans.
 
-The attraction is clear: rare pelagic encounters and a site with a strong reputation among experienced divers. The conversion angle is equally clear: safety, guide quality, small groups, and honest condition-based planning matter more than a generic “book now” pitch.
+## Plan your morning
+
+The trip takes half a day, with a 6:30 a.m. departure and a maximum of four divers per guide. Confirm availability with our team before booking.
+
+## What about hammerhead sightings?
+
+Hammerhead encounters may be possible throughout the year, but their presence and sightings depend on natural conditions. No wildlife encounter is guaranteed.
+
+[See the Gordo Banks experience](/tours/gordo-banks-diving/) for trip details and contact our team with your questions.

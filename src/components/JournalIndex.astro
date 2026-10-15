@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content';
+import { text } from '../data/approved-copy';
+import { blogUI } from '../data/blog';
+import type { Lang } from '../data/site';
+import JournalCard from './JournalCard.astro';
+import JournalCTA from './JournalCTA.astro';
+import '../styles/journal.css';
+type Props = { lang: Lang; eyebrow: string; title: string; description: string };
+const { lang, eyebrow, title, description } = Astro.props;
+const ui = blogUI[lang];
+const posts = (await getCollection('blog')).filter((post) => post.data.lang === lang).sort((a,b) => b.data.pubDate.valueOf()-a.data.pubDate.valueOf() || a.slug.localeCompare(b.slug));
+const [featuredPost, ...morePosts] = posts;
+---
+<main class="journal-page">
+  <section class="journal-heading container">
+    <div class="eyebrow">{text(lang,23,'Eyebrow',eyebrow)}</div>
+    <h1>{text(lang,23,'Título',title)}<span class="journal-dot" aria-hidden="true">.</span></h1>
+    <div class="journal-heading-bottom"><p>{text(lang,23,'Descripción',description)}</p><span class="journal-edition">CABO SAN LUCAS<br />BAJA CALIFORNIA SUR</span></div>
+  </section>
+  <section class="container journal-stories" aria-label={ui.stories}>
+    {featuredPost && <><div class="journal-section-label"><span>{ui.featured}</span><span aria-hidden="true">01 — 0{posts.length}</span></div><JournalCard post={featuredPost} lang={lang} featured /></>}
+    {morePosts.length > 0 && <><div class="journal-section-label journal-more-label"><h2>{ui.latest}</h2></div><div class="journal-grid">{morePosts.map((post,index) => <JournalCard post={post} lang={lang} index={index+2} />)}</div></>}
+    <JournalCTA lang={lang} />
+  </section>
+</main>
