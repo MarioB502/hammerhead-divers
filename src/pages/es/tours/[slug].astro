@@ -1,5 +1,6 @@
 ---
 import { text, cardCopy, sightingNote } from '../../../data/approved-copy';
+import CoursePrograms from '../../../components/CoursePrograms.astro';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
 import { contact, copy } from '../../../data/site';
 import { tours } from '../../../data/tours';
@@ -21,6 +22,7 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${encodeURIComponent(`H
     <section class="section">
       <div class="container tour-detail">
         <div>
+          {tour.slug === 'padi-courses-cabo' && <CoursePrograms lang={lang} />}
           <div class="detail-block"><h2>Highlights</h2><ul>{tour.highlights[lang].map((item) => <li>{item}</li>)}</ul></div>
           <div class="detail-block"><h2>Incluye</h2><ul>{tour.included[lang].map((item) => <li>{item}</li>)}</ul></div>
           <div class="detail-block"><h2>FAQ</h2>{tour.faqs[lang].map((faq) => <div class="card"><h3>{faq.q}</h3><p>{faq.a}</p></div>)}</div>

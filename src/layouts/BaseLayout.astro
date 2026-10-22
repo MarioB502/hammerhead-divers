@@ -45,7 +45,7 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
     <header class="site-header">
       <div class="container nav">
         <a class="brand" href={langPrefix || '/'}>
-          <img class="brand-logo" src="/assets/logo-icon.png" alt="Hammerhead Divers logo" width="42" height="42" />
+          <img class="brand-logo" src="/assets/hammerhead-logo-white.png" alt="Hammerhead Divers logo" width="56" height="56" />
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
           <a href={`${langPrefix}/tours/`}>{c.nav.tours}</a>
@@ -54,6 +54,20 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
           <a href={`${langPrefix}/blog/`}>{c.nav.blog}</a>
           <a href={`${langPrefix}/contact/`}>{contactUI[lang].nav}</a>
         </nav>
+        <details class="mobile-menu">
+          <summary aria-label={ {en:'Open navigation menu',es:'Abrir menú de navegación',fr:'Ouvrir le menu de navigation'}[lang] }><span aria-hidden="true">☰</span> <span>{ {en:'Menu',es:'Menú',fr:'Menu'}[lang] }</span></summary>
+          <nav aria-label={ {en:'Mobile navigation',es:'Navegación móvil',fr:'Navigation mobile'}[lang] }>
+            <a href={`${langPrefix}/tours/`}>{c.nav.tours}</a>
+            <a href={`${langPrefix}/tours/#local-diving`}>{ {en:'Local diving',es:'Buceo local',fr:'Plongée locale'}[lang] }</a>
+            <a href={`${langPrefix}/tours/#full-day-diving`}>{ {en:'Full-day diving',es:'Buceo de día completo',fr:'Plongée à la journée'}[lang] }</a>
+            <a href={`${langPrefix}/tours/#snorkeling`}>Snorkeling</a>
+            <a href={`${langPrefix}/tours/#courses`}>{ {en:'Courses',es:'Cursos',fr:'Cours'}[lang] }</a>
+            <a href={`${langPrefix}/#wildlife`}>{c.nav.wildlife}</a>
+            <a href={`${langPrefix}/#about`}>{c.nav.about}</a>
+            <a href={`${langPrefix}/blog/`}>{c.nav.blog}</a>
+            <a href={`${langPrefix}/contact/`}>{contactUI[lang].nav}</a>
+          </nav>
+        </details>
         <div class="nav-actions">
           <div class="lang-switch" aria-label="Language selector">
             {Object.entries(languages).map(([code, item]) => (
@@ -65,6 +79,13 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
       </div>
     </header>
 
+    <script>
+      const menu = document.querySelector<HTMLDetailsElement>('.mobile-menu');
+      menu?.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { menu.open = false; }));
+      menu?.addEventListener('keydown', event => {
+        if (event.key === 'Escape') { menu.open = false; menu.querySelector('summary')?.focus(); }
+      });
+    </script>
     <slot />
 
     <footer class="site-footer">
@@ -72,7 +93,7 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsMessage}`;
         <div class="footer-grid">
           <div>
             <a class="brand" href={langPrefix || '/'}>
-              <img class="brand-logo footer-brand-logo" src="/assets/logo-icon.png" alt="Hammerhead Divers logo" width="56" height="56" />
+              <img class="brand-logo footer-brand-logo" src="/assets/hammerhead-logo-color.png" alt="Hammerhead Divers logo" width="112" height="112" />
             </a>
             <p>{text(lang, 3, "Footer – posicionamiento", "Premium boutique diving and ocean adventures in Cabo San Lucas, Baja California Sur. Women-owned, small-group, conservation-driven.")}</p>
           </div>

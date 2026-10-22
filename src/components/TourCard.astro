@@ -27,6 +27,6 @@ const whatsUrl = `https://wa.me/${contact.phoneRaw}?text=${whatsText}`;
   </div>
   <div class="card-actions">
     <a class="btn btn-primary" href={`${langPrefix}/tours/${tour.slug}/`}>{card.actions[0]}</a>
-    <a class="btn btn-whatsapp" href={whatsUrl} aria-label={`${c.cta.whats}: ${card.title}`}>{card.actions[1]}</a>
+    <a class="btn btn-whatsapp" href={whatsUrl} aria-label={`${c.cta.whats}: ${card.title}`}>{c.cta.whats}</a>
   </div>
 </article>

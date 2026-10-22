@@ -70,18 +70,17 @@ img { max-width: 100%; display: block; }
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 50%;
-  padding: 4px;
+  background: transparent;
+  padding: 0;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.4));
 }
 
 .footer-brand-logo {
-  width: 56px;
-  height: 56px;
+  width: 112px;
+  height: 112px;
 }
 
 .nav-links {
@@ -976,7 +975,7 @@ img { max-width: 100%; display: block; }
   .tour-catalog .container { width: min(100% - 28px, 1160px); }
   .nav { height: 64px; }
   .brand span:last-child { display: none; }
-  .brand-logo { width: 34px; height: 34px; }
+  .site-header .brand-logo { width: 48px; height: 48px; }
   .nav-actions .btn { display: none; }
   .hero { min-height: 720px; padding: 52px 0 32px; align-items: end; }
   .hero-bg { background-position: 58% center; }
@@ -1018,3 +1017,21 @@ img { max-width: 100%; display: block; }
   }
   body { padding-bottom: 70px; }
 }
+
+/* Tour categories and mobile navigation */
+.catalog-navigation { padding-top: 2rem; }
+.category-links { display:flex; flex-wrap:wrap; gap:.75rem; }
+.tour-catalog { scroll-margin-top:100px; }
+.tour-catalog h2 { margin-bottom:1.5rem; }
+.mobile-menu { display:none; }
+@media (max-width:920px) {
+ .mobile-menu { display:block; margin-left:auto; }
+ .mobile-menu summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:.4rem; padding:.7rem; border:1px solid #557484; border-radius:8px; }
+ .mobile-menu summary::-webkit-details-marker { display:none; }
+ .mobile-menu summary:focus-visible { outline:3px solid #5fdfdf; outline-offset:3px; }
+ .mobile-menu[open] nav { position:absolute; top:100%; left:0; right:0; max-height:75vh; overflow:auto; display:grid; background:#061c2b; border-bottom:1px solid #557484; padding:1rem; box-shadow:0 20px 35px #0008; }
+ .mobile-menu nav a { padding:.7rem 1rem; border-radius:6px; }
+ .mobile-menu nav a:hover,.mobile-menu nav a:focus-visible { background:#164052; }
+ .site-header { position:sticky; }
+}
+@media (max-width:380px) { .nav { gap:.35rem; } .mobile-menu summary {padding:.6rem .4rem;} .nav-actions {gap:.3rem;} }

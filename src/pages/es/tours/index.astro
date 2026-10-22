@@ -1,7 +1,7 @@
 ---
 import { text } from '../../../data/approved-copy';
 import BaseLayout from '../../../layouts/BaseLayout.astro';
-import TourCard from '../../../components/TourCard.astro';
+import TourCatalog from '../../../components/TourCatalog.astro';
 import { copy } from '../../../data/site';
 import { tours } from '../../../data/tours';
 
@@ -18,6 +18,6 @@ const c = copy[lang];
         <p>{text(lang, 19, "Descripción", "Precio, duración, nivel, inclusiones, temporada y reserva directa por WeTravel.")}</p>
       </div>
     </section>
-    <section class="section tour-catalog"><div class="container grid grid-3 tour-card-grid">{tours.map((tour) => <TourCard tour={tour} lang={lang} />)}</div></section>
+    <TourCatalog lang={lang} />
   </main>
 </BaseLayout>
