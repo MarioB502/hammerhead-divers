@@ -70,18 +70,17 @@ img { max-width: 100%; display: block; }
 }
 
 .brand-logo {
-  width: 42px;
-  height: 42px;
+  width: 56px;
+  height: 56px;
   object-fit: contain;
-  background: rgba(255, 255, 255, 0.96);
-  border-radius: 50%;
-  padding: 4px;
+  background: transparent;
+  padding: 0;
   filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.4));
 }
 
 .footer-brand-logo {
-  width: 56px;
-  height: 56px;
+  width: 112px;
+  height: 112px;
 }
 
 .nav-links {
@@ -976,7 +975,7 @@ img { max-width: 100%; display: block; }
   .tour-catalog .container { width: min(100% - 28px, 1160px); }
   .nav { height: 64px; }
   .brand span:last-child { display: none; }
-  .brand-logo { width: 34px; height: 34px; }
+  .site-header .brand-logo { width: 48px; height: 48px; }
   .nav-actions .btn { display: none; }
   .hero { min-height: 720px; padding: 52px 0 32px; align-items: end; }
   .hero-bg { background-position: 58% center; }
