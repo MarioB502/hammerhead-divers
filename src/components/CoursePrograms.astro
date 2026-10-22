@@ -1,0 +1,10 @@
+---
+import type { Lang } from '../data/site';
+const {lang} = Astro.props as {lang: Lang};
+const intro = {en:'Start with Discover Scuba',es:'Empieza con Discover Scuba',fr:'Commencez avec Discover Scuba'};
+const description = {en:'Your first underwater experience with a PADI instructor. Contact us to choose the right program for your experience.',es:'Tu primera experiencia bajo el agua con un instructor PADI. Contáctanos para elegir el programa adecuado para tu experiencia.',fr:'Votre première expérience sous-marine avec un instructeur PADI. Contactez-nous pour choisir le programme adapté à votre expérience.'};
+---
+<div class="detail-block" id="discover-scuba" style="scroll-margin-top:100px">
+ <h2>{intro[lang]}</h2><p>{description[lang]}</p>
+ <ul><li>Discover Scuba Diving</li><li>PADI Open Water Diver</li><li>PADI Advanced Open Water Diver</li><li>{ {en:'PADI specialty courses',es:'Especialidades PADI',fr:'Spécialités PADI'}[lang] }</li></ul>
+</div>

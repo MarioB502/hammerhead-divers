@@ -421,10 +421,10 @@ export const wildlife = [
 ];
 
 export const gallery = [
-  { src: '/assets/whale-shark-hero.jpg', alt: 'Whale shark underwater in Baja California Sur' },
-  { src: '/assets/scuba-group.jpg', alt: 'Small group scuba diving in clear Cabo waters' },
-  { src: '/assets/mobula-snorkel.jpg', alt: 'Snorkeler with mobula rays' },
-  { src: '/assets/turtle.jpg', alt: 'Sea turtle underwater' },
-  { src: '/assets/arch-cabo.jpg', alt: 'The Arch in Cabo San Lucas from the water' },
-  { src: '/assets/snowflake-moray.jpg', alt: 'Snowflake moray eel in coral' }
+ { src: '/assets/whale-shark-hero.jpg', alt: {en:'Whale shark',es:'Tiburón ballena',fr:'Requin-baleine'} },
+ { src: '/assets/hammerhead-shark.jpg', alt: {en:'Hammerhead shark',es:'Tiburón martillo',fr:'Requin-marteau'} },
+ { src: '/assets/mobula-snorkel.jpg', alt: {en:'Mobula rays',es:'Rayas móbula',fr:'Raies mobula'} },
+ { src: '/assets/turtle.jpg', alt: {en:'Sea turtle',es:'Tortuga marina',fr:'Tortue marine'} },
+ { src: '/assets/whale-breach.jpg', alt: {en:'Humpback whale',es:'Ballena jorobada',fr:'Baleine à bosse'} },
+ { src: '/assets/snowflake-moray.jpg', alt: {en:'Snowflake moray eel',es:'Morena copo de nieve',fr:'Murène étoilée'} }
 ];

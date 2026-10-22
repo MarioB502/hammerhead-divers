@@ -1018,3 +1018,21 @@ img { max-width: 100%; display: block; }
   }
   body { padding-bottom: 70px; }
 }
+
+/* Tour categories and mobile navigation */
+.catalog-navigation { padding-top: 2rem; }
+.category-links { display:flex; flex-wrap:wrap; gap:.75rem; }
+.tour-catalog { scroll-margin-top:100px; }
+.tour-catalog h2 { margin-bottom:1.5rem; }
+.mobile-menu { display:none; }
+@media (max-width:920px) {
+ .mobile-menu { display:block; margin-left:auto; }
+ .mobile-menu summary { cursor:pointer; list-style:none; display:flex; align-items:center; gap:.4rem; padding:.7rem; border:1px solid #557484; border-radius:8px; }
+ .mobile-menu summary::-webkit-details-marker { display:none; }
+ .mobile-menu summary:focus-visible { outline:3px solid #5fdfdf; outline-offset:3px; }
+ .mobile-menu[open] nav { position:absolute; top:100%; left:0; right:0; max-height:75vh; overflow:auto; display:grid; background:#061c2b; border-bottom:1px solid #557484; padding:1rem; box-shadow:0 20px 35px #0008; }
+ .mobile-menu nav a { padding:.7rem 1rem; border-radius:6px; }
+ .mobile-menu nav a:hover,.mobile-menu nav a:focus-visible { background:#164052; }
+ .site-header { position:sticky; }
+}
+@media (max-width:380px) { .nav { gap:.35rem; } .mobile-menu summary {padding:.6rem .4rem;} .nav-actions {gap:.3rem;} }

@@ -1,8 +1,39 @@
 {
   "tripadvisor": {
-    "retrievedOn": "2026-10-14",
-    "source": "Client-supplied Trustindex/Tripadvisor HTML",
+    "retrievedOn": "2026-10-21",
+    "source": "Tripadvisor public listing and client-supplied Trustindex HTML",
     "reviews": [
+      {
+        "author": "Adriana C",
+        "date": "2026-08-25",
+        "url": "https://www.tripadvisor.ca/ShowUserReviews-g152515-d21038009-r1074936877-Hammerhead_Divers-Cabo_San_Lucas_Los_Cabos_Baja_California.html",
+        "summary": {
+          "en": "Appreciated the team’s honesty in advising against diving in poor sea conditions.",
+          "es": "Valoró que el equipo desaconsejara bucear por las malas condiciones del mar.",
+          "fr": "A apprécié que l’équipe déconseille la plongée lorsque la mer était mauvaise."
+        }
+      },
+      {
+        "author": "Farid N",
+        "date": "2026-07-16",
+        "rating": 5,
+        "url": "https://www.tripadvisor.ca/ShowUserReviews-g152515-d21038009-r1068710872-Hammerhead_Divers-Cabo_San_Lucas_Los_Cabos_Baja_California.html",
+        "summary": {
+          "en": "Praised Ophélie’s guidance and memorable shark encounters at Gordo Banks.",
+          "es": "Destacó a Ophélie y los encuentros con tiburones en Gordo Banks.",
+          "fr": "A salué Ophélie et les rencontres avec les requins à Gordo Banks."
+        }
+      },
+      {
+        "author": "Thomas Anderson",
+        "date": "2026-07-12",
+        "url": "https://www.tripadvisor.ca/ShowUserReviews-g152515-d21038009-r1068110597-Hammerhead_Divers-Cabo_San_Lucas_Los_Cabos_Baja_California.html",
+        "summary": {
+          "en": "Described reassuring instruction during Open Water and Advanced Open Water courses.",
+          "es": "Destacó la confianza transmitida durante sus cursos Open Water y Advanced Open Water.",
+          "fr": "A souligné un enseignement rassurant pendant ses cours Open Water et Advanced Open Water."
+        }
+      },
       {
         "author": "Pamela R",
         "date": "2026-03-07",

@@ -1,0 +1,14 @@
+---
+import TourCard from './TourCard.astro';
+import { tours } from '../data/tours';
+import type { Lang } from '../data/site';
+const { lang } = Astro.props as {lang: Lang};
+const groups = [
+ {id:'local-diving',labels:{en:'Local diving',es:'Buceo local',fr:'Plongée locale'},slugs:['marine-park-diving','corridor-diving','hidden-gems-diving','gordo-banks-diving']},
+ {id:'full-day-diving',labels:{en:'Full-day diving',es:'Buceo de día completo',fr:'Plongée à la journée'},slugs:['diving-la-paz','cabo-pulmo-expedition','diving-la-ventana']},
+ {id:'snorkeling',labels:{en:'Snorkeling',es:'Snorkeling',fr:'Snorkeling'},slugs:['snorkeling-cabo']},
+ {id:'courses',labels:{en:'Courses',es:'Cursos',fr:'Cours'},slugs:['padi-courses-cabo']}
+];
+---
+<div class="container catalog-navigation"><nav class="category-links" aria-label={ {en:'Tour categories',es:'Categorías de tours',fr:'Catégories de sorties'}[lang] }>{groups.map(group => <a class="btn btn-secondary" href={`#${group.id}`}>{group.labels[lang]}</a>)}</nav></div>
+{groups.map(group => <section class="section tour-catalog" id={group.id}><div class="container"><h2>{group.labels[lang]}</h2><div class="grid grid-3 tour-card-grid">{group.slugs.map(slug => <TourCard tour={tours.find(tour => tour.slug === slug)!} lang={lang} />)}</div></div></section>)}

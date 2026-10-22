@@ -9,7 +9,9 @@ type Props = { lang?: Lang };
 const { lang = 'en' } = Astro.props;
 const c = copy[lang];
 const langPrefix = lang === 'en' ? '' : `/${lang}`;
-const featuredTours = tours.filter((tour) => tour.featured);
+const featuredTours = ['marine-park-diving', 'gordo-banks-diving', 'diving-la-paz', 'cabo-pulmo-expedition'].map(slug => tours.find(tour => tour.slug === slug)!);
+const encounters = [...wildlife].sort((a,b) => Number(b.name === 'Hammerhead Sharks') - Number(a.name === 'Hammerhead Sharks'));
+const animalNames = {en: ['Hammerhead sharks','Whale sharks','Humpback whales','Mobula rays'],es: ['Tiburones martillo','Tiburones ballena','Ballenas jorobadas','Rayas móbula'],fr: ['Requins-marteaux','Requins-baleines','Baleines à bosse','Raies mobula']};
 
 const chooserTitle = {
   en: 'Find the trip that fits your ocean day',
@@ -83,7 +85,7 @@ const whyIntro = {
         <h2>{text(lang,9,'Título',chooserTitle[lang])}</h2>
       </div>
       <div class="chooser-grid">
-        <a class="chooser-card" href={`${langPrefix}/tours/padi-courses-cabo/`}>
+        <a class="chooser-card" href={`${langPrefix}/tours/padi-courses-cabo/#discover-scuba`}>
           <span>{text(lang, 9, "Opción 1 – perfil", "New divers")}</span>
           <strong>{text(lang, 9, "Opción 1 – acción", "Start with PADI")}</strong>
         </a>
@@ -128,9 +130,9 @@ const whyIntro = {
         </div>
       </div>
       <div class="grid grid-4">
-        {wildlife.map((item) => (
+        {encounters.map((item,index) => (
           <div class="wildlife-item" style={`--wildlife-image: url('${item.image}')`}>
-            <strong>{item.name}</strong>
+            <strong>{animalNames[lang][index]}</strong>
             <span>{text(lang,13,item.name,item.season)}</span>
           </div>
         ))}
@@ -173,7 +175,7 @@ const whyIntro = {
       <div class="gallery-grid">
         {gallery.map((image, index) => (
           <figure class={index === 0 ? 'gallery-item wide' : 'gallery-item'}>
-            <img src={image.src} alt={text(lang,17,`Imagen / alt ${index+1}`,image.alt)} loading="lazy" />
+            <img src={image.src} alt={image.alt[lang]} loading="lazy" />
           </figure>
         ))}
       </div>

@@ -1,5 +1,6 @@
 ---
 import { text, cardCopy, sightingNote } from '../../data/approved-copy';
+import CoursePrograms from '../../components/CoursePrograms.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { contact, copy } from '../../data/site';
 import { tours } from '../../data/tours';
@@ -35,6 +36,7 @@ const schema = {
     <section class="section">
       <div class="container tour-detail">
         <div>
+          {tour.slug === 'padi-courses-cabo' && <CoursePrograms lang={lang} />}
           <div class="detail-block">
             <h2>Highlights</h2>
             <ul>{tour.highlights[lang].map((item) => <li>{item}</li>)}</ul>
